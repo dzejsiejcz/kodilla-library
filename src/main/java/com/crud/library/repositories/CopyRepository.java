@@ -1,5 +1,9 @@
-package com.crud.library.domain;
+package com.crud.library.repositories;
 
+import com.crud.library.domain.Rent;
+import com.crud.library.domain.Copy;
+import com.crud.library.domain.Status;
+import com.crud.library.domain.Title;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +15,5 @@ import java.util.List;
 public interface CopyRepository extends CrudRepository<Copy, Integer> {
 
     List<Copy> findByTitle(Title title);
-    Copy findByHires(Hire hire);
     List<Copy> findByStatus(Status status);
 }

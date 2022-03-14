@@ -1,6 +1,9 @@
 package com.crud.library.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,89 +13,45 @@ import java.util.List;
 
 @Entity
 @Table(name = "READERS")
+@Data
+@NoArgsConstructor
 public class Reader {
-
-
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Date created;
-    private List<Hire> hires = new ArrayList<>();
-
-    public Reader(String firstName, String lastName, String email, Date created) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.created = created;
-    }
-
-    public Reader() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Column(name = "ID", unique = true)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private int id;
 
     @NotNull
     @Column(name = "FIRST_NAME")
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    private String firstName;
 
     @NotNull
     @Column(name = "EMAIL", unique = true)
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private String lastName;
 
     @NotNull
     @Column(name = "LAST_NAME")
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String email;
 
     @NotNull
     @Column(name = "CREATED")
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
+    private Date created;
 
     @OneToMany(
-            targetEntity = Hire.class,
+            targetEntity = Rent.class,
             mappedBy = "reader",
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
-    public List<Hire> getHires() {
-        return hires;
-    }
+    private List<Rent> rents = new ArrayList<>();
 
-    public void setHires(List<Hire> hires) {
-        this.hires = hires;
+    @Builder
+    public Reader(String firstName, String lastName, String email, Date created) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.created = created;
     }
 }
