@@ -1,86 +1,51 @@
 package com.crud.library.domain;
 
-import com.sun.istack.NotNull;
-
-import javax.persistence.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "READERS")
+@Data
+@NoArgsConstructor
 public class Reader {
-
-
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Date created;
-    private List<Hire> hires = new ArrayList<>();
-
-    public Reader(String firstName, String lastName, String email, Date created) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.created = created;
-    }
-
-    public Reader() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Column(name = "ID", unique = true)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private int id;
 
     @NotNull
     @Column(name = "FIRST_NAME")
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    @NotNull
-    @Column(name = "EMAIL", unique = true)
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private String firstName;
 
     @NotNull
     @Column(name = "LAST_NAME")
-    public String getLastName() {
-        return lastName;
-    }
+    private String lastName;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    @NotNull
+    @Column(name = "EMAIL", unique = true)
+    private String email;
 
     @NotNull
     @Column(name = "CREATED")
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
+    private Instant created;
 
     @OneToMany(
             targetEntity = Hire.class,
@@ -88,11 +53,13 @@ public class Reader {
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
-    public List<Hire> getHires() {
-        return hires;
-    }
+    private List<Hire> hires = new ArrayList<>();
 
-    public void setHires(List<Hire> hires) {
-        this.hires = hires;
+    @Builder
+    public Reader(String firstName, String lastName, String email, Instant created) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.created = created;
     }
 }

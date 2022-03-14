@@ -1,6 +1,7 @@
 package com.crud.library.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ public class Copy {
     public Copy() {
     }
 
-    public Copy(Title title, Status status) {
+    @Builder
+    public Copy(Title title, Status status, List<Hire> hires) {
         this.title = title;
         this.status = status;
+        this.hires = hires;
     }
 
     @Id
@@ -61,7 +64,7 @@ public class Copy {
 
     @NotNull
     @Column(columnDefinition = "ENUM('BORROWED', 'AVAILABLE', 'DESTROYED', 'LOST')")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     public Status getStatus() {
         return status;
     }

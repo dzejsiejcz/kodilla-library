@@ -1,6 +1,7 @@
 package com.crud.library.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Title {
     public Title() {
     }
 
+    @Builder
     public Title(String name, String author, int releasedYear) {
         this.name = name;
         this.author = author;
@@ -67,12 +69,7 @@ public class Title {
         this.releasedYear = releasedYear;
     }
 
-    @OneToMany(
-            targetEntity = Copy.class,
-            mappedBy = "titles",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @OneToMany(mappedBy = "title")
     public List<Copy> getCopies() {
         return copies;
     }
