@@ -1,17 +1,13 @@
-package com.crud.library.dao;
+package com.crud.library.dto;
 
 
 import com.crud.library.domain.*;
-import com.crud.library.repositories.CopyRepository;
 import com.crud.library.repositories.ReaderRepository;
-import com.crud.library.repositories.TitleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,6 +33,6 @@ public class ReaderTestSuite {
         assertTrue(readReader.isPresent());
 
         //CleanUp
-        readerRepository.deleteById(id);
+        //readerRepository.deleteById(id);
     }
 }

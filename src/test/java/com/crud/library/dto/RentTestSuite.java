@@ -1,4 +1,4 @@
-package com.crud.library.dao;
+package com.crud.library.dto;
 
 
 import com.crud.library.domain.*;
@@ -6,7 +6,6 @@ import com.crud.library.repositories.CopyRepository;
 import com.crud.library.repositories.ReaderRepository;
 import com.crud.library.repositories.RentRepository;
 import com.crud.library.repositories.TitleRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

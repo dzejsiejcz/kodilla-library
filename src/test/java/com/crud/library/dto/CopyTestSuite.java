@@ -1,4 +1,4 @@
-package com.crud.library.dao;
+package com.crud.library.dto;
 
 import com.crud.library.domain.Copy;
 import com.crud.library.domain.Status;
