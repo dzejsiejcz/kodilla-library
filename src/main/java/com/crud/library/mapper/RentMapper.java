@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Service
 public class RentMapper {
 
-    public Rent mapToRent(final RentDto rentDto) {
+    public static Rent mapToRent(final RentDto rentDto) {
       return new Rent(
               rentDto.getRented(),
               rentDto.getReturned(),
@@ -19,7 +19,7 @@ public class RentMapper {
       );
     }
 
-    public RentDto mapToRentDto(final Rent rent) {
+    public static RentDto mapToRentDto(final Rent rent) {
         return new RentDto(
                 rent.getRented(),
                 rent.getReturned(),
@@ -28,9 +28,9 @@ public class RentMapper {
         );
     }
 
-    public List<RentDto> mapToRentDtoList(List<Rent> rentList) {
+    public static List<RentDto> mapToRentDtoList(List<Rent> rentList) {
         return rentList.stream()
-                .map(this::mapToRentDto)
+                .map(RentMapper::mapToRentDto)
                 .collect(Collectors.toList());
     }
 
