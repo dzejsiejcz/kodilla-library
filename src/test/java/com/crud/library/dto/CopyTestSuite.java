@@ -1,6 +1,7 @@
 package com.crud.library.dto;
 
 import com.crud.library.domain.Copy;
+import com.crud.library.domain.Rent;
 import com.crud.library.domain.Status;
 import com.crud.library.domain.Title;
 import com.crud.library.repositories.CopyRepository;
