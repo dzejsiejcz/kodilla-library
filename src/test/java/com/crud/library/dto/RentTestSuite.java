@@ -32,7 +32,7 @@ public class RentTestSuite {
     @Test
     void testAddNewRentals() {
         //Given
-        Reader reader = new Reader("Jan", "Kowalski", "jan@gmail.com", new Date(System.currentTimeMillis()));
+        Reader reader = new Reader("Jan", "Kowalski", "jan@gmail.com");
         List<Title> titleList = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {

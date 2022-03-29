@@ -24,7 +24,6 @@ public class CopyMapper {
         copyDto.setRentDtos(copy.getRents().stream()
                 .map(RentMapper::mapToRentDto)
                 .collect(Collectors.toList()));
-
         return copyDto;
     }
 

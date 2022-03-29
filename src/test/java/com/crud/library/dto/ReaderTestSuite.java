@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +21,7 @@ public class ReaderTestSuite {
     @Test
     void testReaderDaoSave() {
         //Given
-        Reader reader = new Reader("Jan", "Kowalski", "jan@gmail.com", new Date(System.currentTimeMillis()));
+        Reader reader = new Reader("Jan", "Kowalski", "jan@gmail.com");
 
         //When
         readerRepository.save(reader);
@@ -33,6 +32,6 @@ public class ReaderTestSuite {
         assertTrue(readReader.isPresent());
 
         //CleanUp
-        //readerRepository.deleteById(id);
+        readerRepository.deleteById(id);
     }
 }

@@ -1,6 +1,5 @@
 package com.crud.library.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,15 +13,16 @@ public class RentDto {
     private int id;
     private Date rented;
     private Date returned;
-    private Reader reader;
-    private Copy copy;
+    private ReaderDto readerDto;
+    private CopyDto copyDto;
 
     @Builder
-    public RentDto(Date rented, Date returned, Reader reader, Copy copy) {
+    public RentDto(int id, Date rented, Date returned, ReaderDto readerDto, CopyDto copyDto) {
+        this.id = id;
         this.rented = rented;
         this.returned = returned;
-        this.reader = reader;
-        this.copy = copy;
+        this.readerDto = readerDto;
+        this.copyDto = copyDto;
     }
 
 }

@@ -20,11 +20,14 @@ public class TitleMapper {
     }
 
     public static TitleDto mapToTitleDto (final Title title) {
-        return new TitleDto(
+        TitleDto titleDto = new TitleDto(
+                title.getId(),
                 title.getName(),
                 title.getAuthor(),
                 title.getReleasedYear()
         );
+        titleDto.setCopyDtos(CopyMapper.mapToCopyDtoList(title.getCopies()));
+        return titleDto;
     }
 
     public static List<TitleDto> mapToTitleDtoList(final List<Title> titleList) {

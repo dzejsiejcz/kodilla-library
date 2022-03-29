@@ -10,21 +10,25 @@ import java.util.stream.Collectors;
 @Service
 public class RentMapper {
 
+    private RentMapper() {
+    }
+
     public static Rent mapToRent(final RentDto rentDto) {
       return new Rent(
               rentDto.getRented(),
               rentDto.getReturned(),
-              rentDto.getReader(),
-              rentDto.getCopy()
+              ReaderMapper.mapToReader(rentDto.getReaderDto()),
+              CopyMapper.mapToCopy(rentDto.getCopyDto())
       );
     }
 
     public static RentDto mapToRentDto(final Rent rent) {
         return new RentDto(
+                rent.getId(),
                 rent.getRented(),
                 rent.getReturned(),
-                rent.getReader(),
-                rent.getCopy()
+                ReaderMapper.mapToReaderDto(rent.getReader()),
+                CopyMapper.mapToCopyDto(rent.getCopy())
         );
     }
 

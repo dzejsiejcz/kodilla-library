@@ -10,28 +10,29 @@ import java.util.stream.Collectors;
 @Service
 public class ReaderMapper {
 
-    public Reader mapToReader(final ReaderDto readerDto) {
+    public static Reader mapToReader(final ReaderDto readerDto) {
         return new Reader(
                 readerDto.getFirstName(),
                 readerDto.getLastName(),
-                readerDto.getEmail(),
-                readerDto.getCreated()
+                readerDto.getEmail()
         );
     }
 
-    public ReaderDto mapToReaderDto(final Reader reader) {
-        return new ReaderDto(
+    public static ReaderDto mapToReaderDto(final Reader reader) {
+        ReaderDto readerDto = new ReaderDto(
                 reader.getId(),
                 reader.getFirstName(),
                 reader.getLastName(),
                 reader.getEmail(),
                 reader.getCreated()
         );
+        readerDto.setRentDtos(RentMapper.mapToRentDtoList(reader.getRents()));
+        return readerDto;
     }
 
     public List<ReaderDto> mapToReaderDtoList(final List<Reader> readerList) {
         return readerList.stream()
-                .map(this::mapToReaderDto)
+                .map(ReaderMapper::mapToReaderDto)
                 .collect(Collectors.toList());
     }
 

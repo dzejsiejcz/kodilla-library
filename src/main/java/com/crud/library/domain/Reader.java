@@ -48,10 +48,10 @@ public class Reader {
     private List<Rent> rents = new ArrayList<>();
 
     @Builder
-    public Reader(String firstName, String lastName, String email, Date created) {
+    public Reader(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.created = created;
+        this.created = new Date();
     }
 }
