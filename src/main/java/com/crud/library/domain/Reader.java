@@ -42,7 +42,7 @@ public class Reader {
     @OneToMany(
             targetEntity = Rent.class,
             mappedBy = "reader",
-            cascade = CascadeType.REMOVE,
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     private List<Rent> rents = new ArrayList<>();

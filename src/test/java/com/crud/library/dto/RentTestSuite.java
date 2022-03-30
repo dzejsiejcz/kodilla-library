@@ -48,7 +48,7 @@ public class RentTestSuite {
             Copy copy = new Copy(title);
             copyRepository.save(copy);
             Date date = new Date(System.currentTimeMillis());
-            Rent rent = new Rent(date, null, reader, copy);
+            Rent rent = new Rent(reader, copy);
             rentRepository.save(rent);
             int id = copy.getId();
             copyRepository.findById(id).get().setStatus(Status.BORROWED);

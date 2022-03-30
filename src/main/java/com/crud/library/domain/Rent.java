@@ -40,9 +40,8 @@ public class Rent {
     private Copy copy;
 
     @Builder
-    public Rent(Date rented, Date returned, Reader reader, Copy copy) {
-        this.rented = rented;
-        this.returned = returned;
+    public Rent(Reader reader, Copy copy) {
+        this.rented = new Date();
         this.reader = reader;
         this.copy = copy;
     }

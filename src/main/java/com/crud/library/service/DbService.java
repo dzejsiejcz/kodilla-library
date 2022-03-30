@@ -1,8 +1,6 @@
 package com.crud.library.service;
 
-import com.crud.library.domain.Copy;
-import com.crud.library.domain.Reader;
-import com.crud.library.domain.Title;
+import com.crud.library.domain.*;
 import com.crud.library.repositories.CopyRepository;
 import com.crud.library.repositories.ReaderRepository;
 import com.crud.library.repositories.RentRepository;
@@ -47,7 +45,12 @@ public class DbService {
         return copyRepository.findById(id);
     }
 
+    public Rent saveRent(final Rent rent){
+        return rentRepository.save(rent);
+    }
 
-
+    public void setCopyStatus(final int id, final Status status) {
+        copyRepository.findById(id).get().setStatus(status);
+    }
 
 }

@@ -15,8 +15,6 @@ public class RentMapper {
 
     public static Rent mapToRent(final RentDto rentDto) {
       return new Rent(
-              rentDto.getRented(),
-              rentDto.getReturned(),
               ReaderMapper.mapToReader(rentDto.getReaderDto()),
               CopyMapper.mapToCopy(rentDto.getCopyDto())
       );
