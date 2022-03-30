@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.crud.library.domain.Copy;
 import com.crud.library.domain.CopyDto;
-import com.crud.library.domain.Status;
 import com.crud.library.domain.Title;
 import com.crud.library.repositories.CopyRepository;
 import com.crud.library.repositories.TitleRepository;
@@ -53,7 +52,7 @@ class CopyControllerTest {
         List<Copy> copies = new ArrayList<>();
         System.out.println("ROZMIAR TABLICY TITLes " + resultTitleList.size());
         for (Title title : resultTitleList) {
-            Copy copy = new Copy(title, Status.LOST);
+            Copy copy = new Copy(title);
             copyRepository.save(copy);
             copies.add(copy);
         }

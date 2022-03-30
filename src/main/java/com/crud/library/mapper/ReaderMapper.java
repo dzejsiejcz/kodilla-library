@@ -20,11 +20,9 @@ public class ReaderMapper {
 
     public static ReaderDto mapToReaderDto(final Reader reader) {
         ReaderDto readerDto = new ReaderDto(
-                reader.getId(),
                 reader.getFirstName(),
                 reader.getLastName(),
-                reader.getEmail(),
-                reader.getCreated()
+                reader.getEmail()
         );
         readerDto.setRentDtos(RentMapper.mapToRentDtoList(reader.getRents()));
         return readerDto;

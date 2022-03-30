@@ -3,6 +3,7 @@ package com.crud.library.domain;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,8 +38,8 @@ public class Copy {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    public Copy(Title title, Status status) {
+    public Copy(Title title) {
         this.title = title;
-        this.status = status;
+        this.status = Status.AVAILABLE;
     }
 }

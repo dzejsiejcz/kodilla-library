@@ -28,11 +28,11 @@ public class Reader {
     private String firstName;
 
     @NotNull
-    @Column(name = "EMAIL", unique = true)
+    @Column(name = "LAST_NAME")
     private String lastName;
 
     @NotNull
-    @Column(name = "LAST_NAME")
+    @Column(name = "EMAIL", unique = true)
     private String email;
 
     @NotNull

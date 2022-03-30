@@ -19,11 +19,9 @@ public class TitleDto {
     private int releasedYear;
     private List<CopyDto> copyDtos;
 
-    public TitleDto(int id, String name, String author, int releasedYear) {
-        this.id = id;
+    public TitleDto(String name, String author, int releasedYear) {
         this.name = name;
         this.author = author;
         this.releasedYear = releasedYear;
     }
-
 }

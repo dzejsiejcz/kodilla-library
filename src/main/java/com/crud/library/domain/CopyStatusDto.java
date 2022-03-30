@@ -5,21 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CopyDto {
-
-    private int id;
-    private List<RentDto> rentDtos;
-    private TitleDto titleDto;
+public class CopyStatusDto {
+    private Integer copyId;
     private Status status;
-
-    public CopyDto(TitleDto titleDto) {
-        this.titleDto = titleDto;
-    }
-
 }

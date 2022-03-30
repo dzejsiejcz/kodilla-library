@@ -21,7 +21,6 @@ public class TitleMapper {
 
     public static TitleDto mapToTitleDto (final Title title) {
         TitleDto titleDto = new TitleDto(
-                title.getId(),
                 title.getName(),
                 title.getAuthor(),
                 title.getReleasedYear()

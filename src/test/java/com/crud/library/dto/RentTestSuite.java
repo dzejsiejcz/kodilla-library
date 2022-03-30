@@ -45,7 +45,7 @@ public class RentTestSuite {
         List<Title> resultTitleList = titleRepository.findAll();
 
         for (Title title : resultTitleList) {
-            Copy copy = new Copy(title, Status.AVAILABLE);
+            Copy copy = new Copy(title);
             copyRepository.save(copy);
             Date date = new Date(System.currentTimeMillis());
             Rent rent = new Rent(date, null, reader, copy);
@@ -55,7 +55,7 @@ public class RentTestSuite {
         }
 
         for (Title title : resultTitleList) {
-            copyRepository.save(new Copy(title, Status.BORROWED));
+            copyRepository.save(new Copy(title));
         }
 
         //When

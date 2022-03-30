@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.crud.library.domain.Copy;
 import com.crud.library.domain.CopyDto;
+import com.crud.library.service.DbService;
 
 public class CopyMapper {
 
@@ -12,14 +13,12 @@ public class CopyMapper {
     }
 
     public static Copy mapToCopy(final CopyDto copyDto) {
-        return new Copy(TitleMapper.mapToTitle(copyDto.getTitleDto()), copyDto.getStatus());
+        return new Copy(TitleMapper.mapToTitle(copyDto.getTitleDto()));
     }
 
     public static CopyDto mapToCopyDto(final Copy copy) {
         CopyDto copyDto = new CopyDto(
-                TitleMapper.mapToTitleDto(copy.getTitle()),
-                copy.getStatus()
-        );
+                TitleMapper.mapToTitleDto(copy.getTitle()));
         copyDto.setId(copy.getId());
         copyDto.setRentDtos(copy.getRents().stream()
                 .map(RentMapper::mapToRentDto)
