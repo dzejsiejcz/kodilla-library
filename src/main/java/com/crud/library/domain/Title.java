@@ -1,9 +1,7 @@
 package com.crud.library.domain;
 
 import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +9,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "TITLES")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Title {
 

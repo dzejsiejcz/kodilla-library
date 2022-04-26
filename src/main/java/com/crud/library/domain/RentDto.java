@@ -13,15 +13,13 @@ public class RentDto {
     private int id;
     private Date rented;
     private Date returned;
-    private ReaderDto readerDto;
     private CopyDto copyDto;
 
     @Builder
-    public RentDto(int id, Date rented, Date returned, ReaderDto readerDto, CopyDto copyDto) {
+    public RentDto(int id, Date rented, Date returned, CopyDto copyDto) {
         this.id = id;
         this.rented = rented;
         this.returned = returned;
-        this.readerDto = readerDto;
         this.copyDto = copyDto;
     }
 

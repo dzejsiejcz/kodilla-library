@@ -31,7 +31,7 @@ public class CopyTestSuite {
         List<Title> titleList = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
-            Title title = new Title("Title " + i, "Author " + i, (1999+i));
+            Title title = new Title("Title " + i, "Author " + i, (1999 + i));
             titleList.add(title);
         }
 
@@ -51,7 +51,7 @@ public class CopyTestSuite {
         List<Copy> resultList = copyRepository.findByStatus(Status.AVAILABLE);
 
         //Then
-        assertEquals(10, resultList.size());
+        assertEquals(20, resultList.size());
 
         //CleanUp
         titleRepository.deleteAll();

@@ -13,5 +13,4 @@ public class TitleQuantityDto {
 
     private int quantity;
     private Title title;
-    private Status Status;
 }

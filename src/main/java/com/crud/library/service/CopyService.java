@@ -1,4 +1,4 @@
-package com.crud.library;
+package com.crud.library.service;
 
 import com.crud.library.domain.Copy;
 import com.crud.library.repositories.CopyRepository;

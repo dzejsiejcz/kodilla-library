@@ -1,16 +1,16 @@
 package com.crud.library.domain;
 
 import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "RENTALS")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Rent {
 

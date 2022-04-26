@@ -4,9 +4,6 @@ import com.crud.library.domain.Reader;
 import com.crud.library.domain.ReaderDto;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class ReaderMapper {
 
@@ -17,22 +14,5 @@ public class ReaderMapper {
                 readerDto.getEmail()
         );
     }
-
-    public static ReaderDto mapToReaderDto(final Reader reader) {
-        ReaderDto readerDto = new ReaderDto(
-                reader.getFirstName(),
-                reader.getLastName(),
-                reader.getEmail()
-        );
-        readerDto.setRentDtos(RentMapper.mapToRentDtoList(reader.getRents()));
-        return readerDto;
-    }
-
-    public List<ReaderDto> mapToReaderDtoList(final List<Reader> readerList) {
-        return readerList.stream()
-                .map(ReaderMapper::mapToReaderDto)
-                .collect(Collectors.toList());
-    }
-
 
 }

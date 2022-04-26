@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>ec1fce1c-4c8f-447a-97cf-890e9f611350.SCHEMA:library</OriginalElement>
+  <nodes>
+    <node x="311.0" y="0.0">ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.titles</node>
+    <node x="160.0" y="362.0">ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.rentals</node>
+    <node x="0.0" y="170.0">ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.readers</node>
+    <node x="0.0" y="549.0">ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.hibernate_sequence</node>
+    <node x="207.0" y="192.0">ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.copies</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.rentals" target="ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.readers" relationship="REFERENCES">
+      <point x="-41.0" y="-71.0" />
+      <point x="201.0" y="337.0" />
+      <point x="93.5" y="337.0" />
+      <point x="0.0" y="71.0" />
+    </edge>
+    <edge source="ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.rentals" target="ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.copies" relationship="REFERENCES">
+      <point x="41.0" y="-71.0" />
+      <point x="283.0" y="337.0" />
+      <point x="390.5" y="337.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.copies" target="ec1fce1c-4c8f-447a-97cf-890e9f611350.TABLE:library.titles" relationship="REFERENCES">
+      <point x="0.0" y="-49.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.9196141479099679" showDependencies="false" x="287.0" y="301.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

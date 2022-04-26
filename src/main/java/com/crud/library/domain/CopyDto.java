@@ -1,20 +1,12 @@
 package com.crud.library.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.List;
-
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class CopyDto {
 
     private int id;
-    private List<RentDto> rentDtos;
     private TitleDto titleDto;
     private Status status;
 

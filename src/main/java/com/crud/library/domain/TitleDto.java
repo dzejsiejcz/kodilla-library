@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +16,6 @@ public class TitleDto {
     private String name;
     private String author;
     private int releasedYear;
-    private List<CopyDto> copyDtos;
 
     public TitleDto(String name, String author, int releasedYear) {
         this.name = name;

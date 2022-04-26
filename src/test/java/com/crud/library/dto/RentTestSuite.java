@@ -13,7 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import static com.crud.library.domain.Status.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -51,7 +53,8 @@ public class RentTestSuite {
             Rent rent = new Rent(reader, copy);
             rentRepository.save(rent);
             int id = copy.getId();
-            copyRepository.findById(id).get().setStatus(Status.BORROWED);
+            Optional<Copy> copyBorrowed = copyRepository.findById(id);
+            copyBorrowed.ifPresent(value -> value.setStatus(BORROWED));
         }
 
         for (Title title : resultTitleList) {
@@ -59,10 +62,10 @@ public class RentTestSuite {
         }
 
         //When
-        List<Copy> resultList = copyRepository.findByStatus(Status.BORROWED);
+        List<Copy> resultCopyList = copyRepository.findByStatus(BORROWED);
 
         //Then
-        assertEquals(10, resultList.size());
+        assertEquals(10, resultCopyList.size());
 
         //CleanUp
         rentRepository.deleteAll();

@@ -26,7 +26,7 @@ public class TitleTestSuite {
         List<Title> titleList = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
-            Title title = new Title("Title " + i, "Author " + i, (1999+i));
+            Title title = new Title("Title " + i, "Author " + i, (1999 + i));
             titleList.add(title);
         }
 
@@ -36,7 +36,7 @@ public class TitleTestSuite {
         String result = titleRepository.findByName("Title 1").getName();
 
         //Then
-        assertEquals("Title 1",result);
+        assertEquals("Title 1", result);
 
         //CleanUp
 
