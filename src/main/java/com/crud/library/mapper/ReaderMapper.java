@@ -14,5 +14,4 @@ public class ReaderMapper {
                 readerDto.getEmail()
         );
     }
-
 }

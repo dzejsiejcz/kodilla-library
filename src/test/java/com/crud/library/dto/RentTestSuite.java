@@ -69,7 +69,6 @@ public class RentTestSuite {
 
         //CleanUp
         rentRepository.deleteAll();
-
         copyRepository.deleteAll();
         titleRepository.deleteAll();
         readerRepository.deleteAll();

@@ -22,5 +22,4 @@ public class RentDto {
         this.returned = returned;
         this.copyDto = copyDto;
     }
-
 }

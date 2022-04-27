@@ -13,5 +13,4 @@ public class CopyDto {
     public CopyDto(TitleDto titleDto) {
         this.titleDto = titleDto;
     }
-
 }

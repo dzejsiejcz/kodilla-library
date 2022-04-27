@@ -9,6 +9,5 @@ import javax.transaction.Transactional;
 @Transactional
 @Repository
 public interface ReaderRepository extends CrudRepository<Reader, Integer> {
-
     Reader findByEmail(String email);
 }

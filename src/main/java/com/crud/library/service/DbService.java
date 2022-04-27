@@ -66,5 +66,4 @@ public class DbService {
                 "Rent not found"
         ));
     }
-
 }

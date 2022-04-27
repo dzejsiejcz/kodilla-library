@@ -15,5 +15,4 @@ public class CopyMapper {
         copyDto.setStatus(copy.getStatus());
         return copyDto;
     }
-
 }

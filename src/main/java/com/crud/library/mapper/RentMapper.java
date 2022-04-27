@@ -18,5 +18,4 @@ public class RentMapper {
                 CopyMapper.mapToCopyDto(rent.getCopy())
         );
     }
-
 }

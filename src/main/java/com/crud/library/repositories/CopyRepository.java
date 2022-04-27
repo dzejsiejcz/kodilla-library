@@ -12,6 +12,5 @@ import java.util.List;
 @Transactional
 @Repository
 public interface CopyRepository extends CrudRepository<Copy, Integer> {
-
     List<Copy> findByStatus(Status status);
 }

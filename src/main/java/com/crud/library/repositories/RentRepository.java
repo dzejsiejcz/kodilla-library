@@ -9,5 +9,4 @@ import javax.transaction.Transactional;
 @Transactional
 @Repository
 public interface RentRepository extends CrudRepository<Rent, Integer> {
-
 }

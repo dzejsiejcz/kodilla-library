@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TitleQuantityDto {
-
     private int quantity;
     private Title title;
 }
