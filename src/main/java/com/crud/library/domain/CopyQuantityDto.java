@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TitleQuantityDto {
-    private int quantity;
+public class CopyQuantityDto {
+    private int quantityOfCopies;
     private Title title;
 }

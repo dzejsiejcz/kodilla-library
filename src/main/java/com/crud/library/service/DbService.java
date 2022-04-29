@@ -10,8 +10,11 @@ import com.crud.library.repositories.ReaderRepository;
 import com.crud.library.repositories.RentRepository;
 import com.crud.library.repositories.TitleRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.LifecycleState;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,15 +48,11 @@ public class DbService {
         ));
     }
 
-    public Copy saveCopy(final Copy copy) {
-        return copyRepository.save(copy);
-    }
-
-    public Copy findCopyById(final int id) throws CopyNotFoundException {
-        Optional<Copy> copy = copyRepository.findById(id);
-        return copy.orElseThrow(() -> new CopyNotFoundException(
-                "Copy not found for id: " + id
-        ));
+    public List<Title> findAllTitles(){
+        Iterable<Title> all = titleRepository.findAll();
+        List<Title> titles = new ArrayList<>();
+        all.forEach(titles::add);
+        return titles;
     }
 
     public Rent saveRent(final Rent rent) {

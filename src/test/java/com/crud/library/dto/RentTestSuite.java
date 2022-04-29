@@ -49,7 +49,6 @@ public class RentTestSuite {
         for (Title title : resultTitleList) {
             Copy copy = new Copy(title);
             copyRepository.save(copy);
-            Date date = new Date(System.currentTimeMillis());
             Rent rent = new Rent(reader, copy);
             rentRepository.save(rent);
             int id = copy.getId();

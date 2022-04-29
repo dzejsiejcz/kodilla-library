@@ -2,7 +2,6 @@ package com.crud.library.repositories;
 
 import com.crud.library.domain.Copy;
 import com.crud.library.domain.Status;
-import com.crud.library.domain.Title;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

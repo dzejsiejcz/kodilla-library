@@ -1,6 +1,7 @@
 package com.crud.library.controller;
 
 import com.crud.library.domain.*;
+import com.crud.library.service.CopyService;
 import com.crud.library.service.DbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -9,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
+import static com.crud.library.domain.Status.searchStatus;
 import static com.crud.library.mapper.CopyMapper.mapToCopyDto;
 import static com.crud.library.mapper.ReaderMapper.mapToReader;
 import static com.crud.library.mapper.RentMapper.mapToRentDto;
 import static com.crud.library.mapper.TitleMapper.mapToTitle;
+import static com.crud.library.mapper.TitleMapper.mapToTitleDtoList;
 
 @CrossOrigin("*")
 @RestController
@@ -24,12 +28,19 @@ import static com.crud.library.mapper.TitleMapper.mapToTitle;
 public class LibraryController {
 
     private final DbService dbService;
+    private final CopyService copyService;
 
     @PostMapping(value = "/create-user", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createReader(@RequestBody ReaderDto readerDto) {
         Reader reader = mapToReader(readerDto);
         dbService.saveReader(reader);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TitleDto>> getAllTitles(){
+        List<Title> titles = dbService.findAllTitles();
+        return ResponseEntity.ok(mapToTitleDtoList(titles));
     }
 
     @PostMapping(value = "/create-title", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -39,37 +50,15 @@ public class LibraryController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(value = "/{titleId}/create-copy", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createCopy(@RequestBody Integer quantity, @PathVariable int titleId) throws TitleNotFoundException {
-        Title title = dbService.findTitleById(titleId);
-        for (int i = 0; i < quantity; i++) {
-            dbService.saveCopy(new Copy(title));
-        }
-        return ResponseEntity.ok().build();
-    }
 
-    @Transactional
-    @PutMapping(value = "/{titleId}/{copyId}/set-status")
-    public ResponseEntity<CopyDto> modifyCopyStatus(@RequestParam("status") String status, @PathVariable int titleId, @PathVariable int copyId) throws CopyNotFoundException, TitleNotFoundException {
-        dbService.findTitleById(titleId);
-        Copy copy = dbService.findCopyById(copyId);
-        Status statusFound = Status.searchStatus(status);
-        if (statusFound != null) {
-            copy.setStatus(statusFound);
-            dbService.saveCopy(copy);
-            return ResponseEntity.ok(mapToCopyDto(copy));
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
 
     @GetMapping(value = "/{titleId}/get-available")
-    public ResponseEntity<TitleQuantityDto> getTitleQuantity(@PathVariable int titleId) throws TitleNotFoundException {
+    public ResponseEntity<CopyQuantityDto> getTitleQuantity(@PathVariable int titleId) throws TitleNotFoundException {
         Title title = dbService.findTitleById(titleId);
         int availableQuantity = (int) title.getCopies().stream()
                 .filter(copy -> copy.getStatus().equals(Status.AVAILABLE))
                 .count();
-        return ResponseEntity.ok(new TitleQuantityDto(availableQuantity, title));
+        return ResponseEntity.ok(new CopyQuantityDto(availableQuantity, title));
     }
 
     @Transactional
@@ -86,17 +75,17 @@ public class LibraryController {
             availableCopy.get().setStatus(Status.BORROWED);
             return ResponseEntity.ok(mapToRentDto(savedRent));
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.notFound().build();
     }
 
     @Transactional
     @PutMapping(value = "return/{rentId}")
-    public ResponseEntity<CopyDto> returnCopy(@RequestParam("status") String status, @RequestBody ReaderDto readerDto, @PathVariable int rentId) throws CopyNotFoundException, RentNotFoundException {
+    public ResponseEntity<CopyDto> returnCopy(@RequestParam("status") Status status, @RequestBody ReaderDto readerDto, @PathVariable int rentId) throws CopyNotFoundException, RentNotFoundException {
         Rent rent = dbService.findRentById(rentId);
 
         if (rent.getReader().getEmail().equals(readerDto.getEmail())) {
-            Copy copy = dbService.findCopyById(rent.getCopy().getId());
-            Status statusFound = Status.searchStatus(status);
+            Copy copy = copyService.findCopyById(rent.getCopy().getId());
+            Status statusFound = searchStatus(status);
             if (statusFound != null) {
                 copy.setStatus(statusFound);
             } else {
@@ -105,7 +94,7 @@ public class LibraryController {
             rent.setReturned(new Date());
             return ResponseEntity.ok(mapToCopyDto(copy));
         } else {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.notFound().build();
         }
     }
 
