@@ -42,7 +42,7 @@ public class DbService {
     }
 
     public Title findTitleById(final int id) throws TitleNotFoundException {
-        Optional<Title> title = Optional.ofNullable(titleRepository.findById(id));
+        Optional<Title> title = titleRepository.findById(id);
         return title.orElseThrow(() -> new TitleNotFoundException(
                 "Title not found for id: " + id
         ));

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-import static com.crud.library.domain.Status.searchStatus;
 import static com.crud.library.mapper.CopyMapper.mapToCopyDto;
 import static com.crud.library.mapper.ReaderMapper.mapToReader;
 import static com.crud.library.mapper.RentMapper.mapToRentDto;
@@ -85,7 +84,7 @@ public class LibraryController {
 
         if (rent.getReader().getEmail().equals(readerDto.getEmail())) {
             Copy copy = copyService.findCopyById(rent.getCopy().getId());
-            Status statusFound = searchStatus(status);
+            Status statusFound = Status.AVAILABLE;
             if (statusFound != null) {
                 copy.setStatus(statusFound);
             } else {

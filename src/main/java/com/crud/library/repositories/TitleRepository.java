@@ -10,7 +10,6 @@ import java.util.List;
 @Transactional
 @Repository
 public interface TitleRepository extends CrudRepository<Title, Integer> {
-    Title findById(int id);
     Title findByName(String name);
     List<Title> findAll();
 }
