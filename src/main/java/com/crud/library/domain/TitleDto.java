@@ -22,4 +22,5 @@ public class TitleDto {
         this.author = author;
         this.releasedYear = releasedYear;
     }
+
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.crud.library.controller.CopyController;
+import com.crud.library.controller.CopyNotFoundException;
 import com.crud.library.domain.Copy;
 import com.crud.library.domain.CopyDto;
 import com.crud.library.domain.Title;
@@ -28,7 +29,7 @@ class CopyControllerTest {
     private CopyRepository copyRepository;
 
     @Test
-    void getCopy() {
+    void getCopy() throws CopyNotFoundException {
         //Given
         List<Copy> copies = prepareTitlesAndCopies();
 

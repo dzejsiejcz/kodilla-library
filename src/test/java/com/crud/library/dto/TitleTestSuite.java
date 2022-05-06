@@ -39,7 +39,6 @@ public class TitleTestSuite {
         assertEquals("Title 1", result);
 
         //CleanUp
-
         titleRepository.deleteAll();
     }
 

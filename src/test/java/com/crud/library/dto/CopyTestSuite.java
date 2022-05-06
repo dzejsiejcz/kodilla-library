@@ -22,7 +22,6 @@ public class CopyTestSuite {
     @Autowired
     CopyRepository copyRepository;
 
-
     @Test
     void testAddNewBooks() {
         //Given

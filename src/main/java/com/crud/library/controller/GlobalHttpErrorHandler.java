@@ -9,23 +9,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(TitleNotFoundException.class)
-    public ResponseEntity<Object> handleTitleNotFoundException(TitleNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(CopyNotFoundException.class)
-    public ResponseEntity<Object> handleCopyNotFoundException(CopyNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(RentNotFoundException.class)
-    public ResponseEntity<Object> handleRentNotFoundException (RentNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(ReaderNotFoundException.class)
-    public ResponseEntity<Object> handleReaderNotFoundException (ReaderNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler({
+            TitleNotFoundException.class,
+            CopyNotFoundException.class,
+            RentNotFoundException.class,
+            ReaderNotFoundException.class })
+    public ResponseEntity<Object> handleTitleNotFoundException(Exception exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

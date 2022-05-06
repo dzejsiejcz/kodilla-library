@@ -1,34 +1,22 @@
 package com.crud.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
+@Getter
 public enum Status {
-    BORROWED("BORROWED"),
-    AVAILABLE("AVAILABLE"),
-    DESTROYED("DESTROYED"),
-    LOST("LOST");
+    BORROWED,
+    AVAILABLE,
+    DESTROYED,
+    LOST;
 
-    final String description;
-
-    Status(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return description;
-    }
-
-    private static final List<Status> statuses = new ArrayList<>(Arrays.asList(Status.values()));
-
-    public static Status searchStatus(String value) {
-        for (Status status : statuses) {
-            if (status.toString().equals(value)) {
-                return status;
-            }
-        }
-        return null;
+    @JsonCreator
+    public Status of(String status){
+        return Status.valueOf(status.toUpperCase(Locale.ROOT));
     }
 }

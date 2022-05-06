@@ -1,24 +1,23 @@
 package com.crud.library.service;
 
-import com.crud.library.controller.CopyNotFoundException;
 import com.crud.library.controller.ReaderNotFoundException;
 import com.crud.library.controller.RentNotFoundException;
 import com.crud.library.controller.TitleNotFoundException;
 import com.crud.library.domain.*;
-import com.crud.library.repositories.CopyRepository;
 import com.crud.library.repositories.ReaderRepository;
 import com.crud.library.repositories.RentRepository;
 import com.crud.library.repositories.TitleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DbService {
 
-    private final CopyRepository copyRepository;
     private final ReaderRepository readerRepository;
     private final RentRepository rentRepository;
     private final TitleRepository titleRepository;
@@ -39,21 +38,17 @@ public class DbService {
     }
 
     public Title findTitleById(final int id) throws TitleNotFoundException {
-        Optional<Title> title = Optional.ofNullable(titleRepository.findById(id));
+        Optional<Title> title = titleRepository.findById(id);
         return title.orElseThrow(() -> new TitleNotFoundException(
                 "Title not found for id: " + id
         ));
     }
 
-    public Copy saveCopy(final Copy copy) {
-        return copyRepository.save(copy);
-    }
-
-    public Copy findCopyById(final int id) throws CopyNotFoundException {
-        Optional<Copy> copy = copyRepository.findById(id);
-        return copy.orElseThrow(() -> new CopyNotFoundException(
-                "Copy not found for id: " + id
-        ));
+    public List<Title> findAllTitles(){
+        Iterable<Title> all = titleRepository.findAll();
+        List<Title> titles = new ArrayList<>();
+        all.forEach(titles::add);
+        return titles;
     }
 
     public Rent saveRent(final Rent rent) {
@@ -66,5 +61,4 @@ public class DbService {
                 "Rent not found"
         ));
     }
-
 }
