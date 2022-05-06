@@ -15,11 +15,4 @@ public class ReaderDto {
     private String email;
     private List<RentDto> rentDtos;
 
-    @Builder
-    public ReaderDto(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
 }

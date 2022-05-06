@@ -1,16 +1,13 @@
 package com.crud.library.service;
 
-import com.crud.library.controller.CopyNotFoundException;
 import com.crud.library.controller.ReaderNotFoundException;
 import com.crud.library.controller.RentNotFoundException;
 import com.crud.library.controller.TitleNotFoundException;
 import com.crud.library.domain.*;
-import com.crud.library.repositories.CopyRepository;
 import com.crud.library.repositories.ReaderRepository;
 import com.crud.library.repositories.RentRepository;
 import com.crud.library.repositories.TitleRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.LifecycleState;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +18,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DbService {
 
-    private final CopyRepository copyRepository;
     private final ReaderRepository readerRepository;
     private final RentRepository rentRepository;
     private final TitleRepository titleRepository;

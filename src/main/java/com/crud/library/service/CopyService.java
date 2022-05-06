@@ -1,6 +1,5 @@
 package com.crud.library.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,24 +31,11 @@ public class CopyService {
         ));
     }
 
-    public List<Copy> findAllCopiesByTitle(Title title) {
-        Iterable<Copy> all = copyRepository.findAll();
-
-        List<Copy> copies = new ArrayList<>();
-        for (Copy copy : all) {
-            if (copy.getTitle().equals(title)) {
-                copies.add(copy);
-            }
-        }
-        return copies;
-    }
-
     public List<Copy> getAllAvailableCopies(int titleId) {
         Optional<Title> titleOpt = titleRepository.findById(titleId);
         if (titleOpt.isEmpty()) {
-            throw new TitleNotFoundException("todo");
+            throw new TitleNotFoundException("Title not found for id: " + titleId);
         }
-
         return copyRepository.findByTitleAndStatus(titleOpt.get(), Status.AVAILABLE);
     }
 }

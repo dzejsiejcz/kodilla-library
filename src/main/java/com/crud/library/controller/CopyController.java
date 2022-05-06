@@ -12,7 +12,7 @@ import com.crud.library.domain.Title;
 import com.crud.library.mapper.CopyMapper;
 import com.crud.library.service.CopyService;
 import com.crud.library.service.DbService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,21 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/copy")
+@RequiredArgsConstructor
 @Log4j2
 public class CopyController {
 
     private final CopyService copyService;
     private final DbService dbService;
-
-    public CopyController(CopyService copyService, DbService dbService) {
-        this.copyService = copyService;
-        this.dbService = dbService;
-        Copy copy = new Copy();
-        copy.setRents(List.of());
-        copy.setStatus(Status.BORROWED);
-        copyService.saveCopy(copy);
-        log.info("\n\n\n {} \n\n\n", copy);
-    }
 
     @GetMapping("/{id}")
     public CopyDto getCopy(@PathVariable int id) throws CopyNotFoundException {
@@ -46,8 +37,8 @@ public class CopyController {
         return CopyMapper.mapToCopyDto(copy);
     }
 
-    @GetMapping(value = "/{titleId}/get-copies")
-    public ResponseEntity<List<CopyDto>> getAllCopies(@PathVariable int titleId) {
+    @GetMapping(value = "/{titleId}/get-available-copies")
+    public ResponseEntity<List<CopyDto>> getAllAvailableCopies(@PathVariable int titleId) {
         log.info("Get all copies {}", titleId);
 
         List<Copy> copies = copyService.getAllAvailableCopies(titleId);
